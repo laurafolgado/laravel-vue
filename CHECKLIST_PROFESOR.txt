@@ -1,0 +1,455 @@
+═══════════════════════════════════════════════════════════════════════════
+                    CHECKLIST PARA EL PROFESOR/A
+                            PROYECTO PRODUKTUAK
+═══════════════════════════════════════════════════════════════════════════
+
+Este documento te ayudará a preparar y presentar el proyecto a tu alumnado.
+
+═══════════════════════════════════════════════════════════════════════════
+
+📋 ANTES DE LA CLASE
+═══════════════════════════════════════════════════════════════════════════
+
+PREPARACIÓN DEL ENTORNO
+───────────────────────
+
+☐ Verificar que tienes instalado:
+  ☐ PHP >= 8.1 (php --version)
+  ☐ Composer (composer --version)
+  ☐ MySQL >= 5.7 (mysql --version)
+  ☐ Un navegador moderno
+
+☐ Probar la instalación del proyecto:
+  ☐ Crear base de datos: mysql -u root -p < database_completo.sql
+  ☐ Configurar .env con credenciales correctas
+  ☐ Ejecutar: php artisan migrate
+  ☐ Iniciar servidor: php artisan serve
+  ☐ Verificar que funciona en http://localhost:8000
+
+☐ Revisar toda la documentación:
+  ☐ INDICE.txt (para conocer todos los recursos)
+  ☐ INSTALACION.txt (para guiar a estudiantes)
+  ☐ ARQUITECTURA.md (para explicar el diseño)
+  ☐ COMPARATIVA_CRUD.md (para discutir enfoques)
+
+PREPARACIÓN DE MATERIALES
+─────────────────────────
+
+☐ Imprimir o compartir digitalmente:
+  ☐ INSTALACION.txt (guía de instalación)
+  ☐ COMANDOS.sh (referencia rápida)
+  
+☐ Preparar demostración en vivo:
+  ☐ Tener el proyecto funcionando
+  ☐ Tener datos de ejemplo en la base de datos
+  ☐ Tener Postman o similar para demo de API
+  ☐ Tener consola del navegador lista (F12)
+
+☐ Preparar ejemplos adicionales (opcional):
+  ☐ Crear un producto de ejemplo para mostrar validación
+  ☐ Preparar consultas SQL para mostrar en MySQL
+  ☐ Tener código de ejemplo listo para copiar
+
+═══════════════════════════════════════════════════════════════════════════
+
+🎓 ESTRUCTURA DE CLASE SUGERIDA
+═══════════════════════════════════════════════════════════════════════════
+
+SESIÓN 1: INTRODUCCIÓN Y CONFIGURACIÓN (2 horas)
+─────────────────────────────────────────────────
+
+☐ Presentación del proyecto (15 min)
+  ☐ Mostrar RESUMEN_PROYECTO.txt
+  ☐ Explicar objetivos de aprendizaje
+  ☐ Mostrar demo rápida en el navegador
+
+☐ Verificación de prerrequisitos (15 min)
+  ☐ Verificar instalaciones: PHP, Composer, MySQL
+  ☐ Ayudar a resolver problemas de instalación
+
+☐ Instalación guiada (45 min)
+  ☐ Seguir INSTALACION.txt paso a paso
+  ☐ Crear base de datos
+  ☐ Configurar .env
+  ☐ Ejecutar migraciones
+  ☐ Iniciar servidor
+  ☐ Verificar que funciona
+
+☐ Exploración inicial (30 min)
+  ☐ Navegar por la aplicación
+  ☐ Crear un producto
+  ☐ Editar un producto
+  ☐ Ver detalles
+  ☐ Eliminar un producto
+
+☐ Resumen y tarea (15 min)
+  ☐ Repasar lo aprendido
+  ☐ Asignar lectura: README.md
+
+SESIÓN 2: ARQUITECTURA MVC Y BLADE (2-3 horas)
+───────────────────────────────────────────────
+
+☐ Repaso de la sesión anterior (10 min)
+
+☐ Explicación de arquitectura MVC (30 min)
+  ☐ Usar ARQUITECTURA.md como guía
+  ☐ Mostrar diagrama de flujo
+  ☐ Explicar cada componente
+
+☐ Análisis del código Blade (60 min)
+  ☐ Modelo: app/Models/Produktu.php
+    ☐ Explicar Eloquent ORM
+    ☐ $fillable, $casts, $table
+  
+  ☐ Controlador: ProduktuController.php
+    ☐ Métodos CRUD
+    ☐ Validación
+    ☐ Redirecciones
+  
+  ☐ Vistas: resources/views/produktuak/
+    ☐ Layouts y componentes
+    ☐ Bootstrap
+    ☐ Formularios
+    ☐ Directivas Blade
+
+☐ Práctica guiada (45 min)
+  ☐ Modificar número de productos por página
+  ☐ Añadir un nuevo campo (ej: stock)
+  ☐ Personalizar mensajes
+
+☐ Resumen y tarea (15 min)
+  ☐ Ejercicios nivel 1 del README.md
+
+SESIÓN 3: API REST Y VUE.JS (2-3 horas)
+────────────────────────────────────────
+
+☐ Introducción a API REST (20 min)
+  ☐ Conceptos básicos
+  ☐ Verbos HTTP
+  ☐ Códigos de respuesta
+  ☐ JSON
+
+☐ Análisis del código API (40 min)
+  ☐ routes/api.php
+  ☐ ProduktuApiController.php
+  ☐ Diferencias con controlador web
+  ☐ Respuestas JSON
+
+☐ Testing de la API (30 min)
+  ☐ Usar EJEMPLOS_API.md
+  ☐ Probar con curl
+  ☐ Probar con Postman
+  ☐ Ver respuestas JSON
+
+☐ Introducción a Vue.js (20 min)
+  ☐ Conceptos de reactividad
+  ☐ Comparar con Blade (usar COMPARATIVA_CRUD.md)
+
+☐ Análisis del código Vue (40 min)
+  ☐ vue.blade.php
+  ☐ data(), methods, mounted()
+  ☐ Axios para peticiones
+  ☐ v-model, @click, v-for
+
+☐ Práctica y comparación (30 min)
+  ☐ Usar ambas interfaces
+  ☐ Comparar experiencia de usuario
+  ☐ Ver red en DevTools (F12)
+
+☐ Resumen y tarea (10 min)
+  ☐ Ejercicios nivel 2 del README.md
+
+SESIÓN 4: PROYECTO PRÁCTICO (2-3 horas)
+────────────────────────────────────────
+
+☐ Trabajo en ejercicios avanzados
+  ☐ Añadir búsqueda
+  ☐ Implementar categorías
+  ☐ Subir imágenes
+  ☐ (Según nivel del grupo)
+
+☐ Presentaciones de estudiantes
+☐ Revisión de código
+☐ Discusión de mejores prácticas
+
+═══════════════════════════════════════════════════════════════════════════
+
+💡 PUNTOS CLAVE A ENFATIZAR
+═══════════════════════════════════════════════════════════════════════════
+
+CONCEPTOS FUNDAMENTALES
+───────────────────────
+
+☐ Arquitectura MVC
+  → Separación de responsabilidades
+  → Ventajas de la organización
+
+☐ Eloquent ORM
+  → Abstracción de base de datos
+  → Active Record pattern
+  → Facilidad de uso vs SQL raw
+
+☐ Route Model Binding
+  → Laravel automáticamente inyecta modelos
+  → Simplifica código del controlador
+
+☐ Validación
+  → Siempre validar en servidor
+  → Laravel hace esto muy fácil
+  → Mensajes de error automáticos
+
+☐ API REST
+  → Separación frontend/backend
+  → Reutilización del backend
+  → Escalabilidad
+
+☐ SPA vs Tradicional
+  → Ventajas de cada enfoque
+  → Cuándo usar cada uno
+  → Trade-offs
+
+═══════════════════════════════════════════════════════════════════════════
+
+🎯 EJERCICIOS SUGERIDOS POR NIVEL
+═══════════════════════════════════════════════════════════════════════════
+
+NIVEL 1 - BÁSICO (Para estudiantes nuevos en Laravel)
+──────────────────────────────────────────────────────
+
+☐ Modificaciones simples:
+  1. Cambiar número de productos por página
+  2. Cambiar colores del navbar
+  3. Añadir un nuevo mensaje de éxito personalizado
+  4. Modificar el título de la aplicación
+
+☐ Consultas de base de datos:
+  5. Ver todos los productos en MySQL
+  6. Insertar un producto manualmente con SQL
+  7. Actualizar precio de un producto con SQL
+
+☐ Exploración:
+  8. Usar Tinker para crear productos
+  9. Ver todas las rutas con artisan route:list
+  10. Revisar logs en storage/logs/
+
+NIVEL 2 - INTERMEDIO
+─────────────────────
+
+☐ Añadir funcionalidades:
+  1. Campo "stock" (cantidad disponible)
+  2. Búsqueda de productos por nombre
+  3. Filtro por rango de precio
+  4. Ordenación por columnas (nombre, precio, fecha)
+
+☐ Validaciones:
+  5. Precio máximo de 10000€
+  6. Nombre único (no duplicados)
+  7. Stock no negativo
+
+☐ Mejoras de UI:
+  8. Botón "Limpiar formulario"
+  9. Confirmación con modal de Bootstrap
+  10. Mostrar fecha de creación formateada
+
+NIVEL 3 - AVANZADO
+───────────────────
+
+☐ Funcionalidades complejas:
+  1. Sistema de categorías (nueva tabla)
+  2. Subida de imágenes para productos
+  3. Carrito de compra
+  4. Sistema de favoritos
+
+☐ API avanzada:
+  5. Búsqueda en la API
+  6. Paginación en Vue con botones
+  7. API Resources para transformar datos
+  8. Rate limiting
+
+☐ Testing:
+  9. Tests unitarios con PHPUnit
+  10. Tests de API
+  11. Tests de integración
+
+═══════════════════════════════════════════════════════════════════════════
+
+🐛 PROBLEMAS COMUNES Y SOLUCIONES
+═══════════════════════════════════════════════════════════════════════════
+
+PROBLEMA: "No application encryption key"
+SOLUCIÓN: php artisan key:generate
+
+PROBLEMA: "Unknown database 'produktuak'"
+SOLUCIÓN: Crear la base de datos primero
+
+PROBLEMA: "Access denied for user"
+SOLUCIÓN: Verificar credenciales en .env
+
+PROBLEMA: "Class 'Produktu' not found"
+SOLUCIÓN: composer dump-autoload
+
+PROBLEMA: Vue no carga
+SOLUCIÓN: Verificar que el CDN esté accesible, revisar consola del navegador
+
+PROBLEMA: API devuelve 404
+SOLUCIÓN: Verificar routes/api.php, limpiar caché de rutas
+
+PROBLEMA: Permisos en storage/
+SOLUCIÓN: chmod -R 775 storage bootstrap/cache
+
+═══════════════════════════════════════════════════════════════════════════
+
+📊 EVALUACIÓN SUGERIDA
+═══════════════════════════════════════════════════════════════════════════
+
+CRITERIOS DE EVALUACIÓN (Ejemplo)
+──────────────────────────────────
+
+☐ Instalación y configuración (10%)
+  → Proyecto funcionando correctamente
+  → Base de datos configurada
+  → Datos de ejemplo insertados
+
+☐ Comprensión de conceptos (30%)
+  → MVC
+  → Eloquent
+  → Rutas y controladores
+  → API REST
+
+☐ Modificaciones básicas (20%)
+  → Completar ejercicios nivel 1
+  → Código limpio y funcional
+
+☐ Funcionalidades añadidas (25%)
+  → Ejercicios nivel 2 o 3
+  → Creatividad en las soluciones
+  → Buenas prácticas
+
+☐ Presentación/Documentación (15%)
+  → Explicar código propio
+  → Documentar cambios
+  → Commits de Git claros
+
+═══════════════════════════════════════════════════════════════════════════
+
+📚 RECURSOS ADICIONALES PARA COMPARTIR
+═══════════════════════════════════════════════════════════════════════════
+
+DOCUMENTACIÓN OFICIAL
+─────────────────────
+• Laravel: https://laravel.com/docs
+• Vue.js: https://vuejs.org/guide/
+• Bootstrap: https://getbootstrap.com/docs
+• MySQL: https://dev.mysql.com/doc/
+
+VIDEO TUTORIALES
+────────────────
+• Laracasts (Laravel): https://laracasts.com
+• Vue Mastery: https://www.vuemastery.com
+• Traversy Media (YouTube): Canal con tutoriales gratuitos
+
+COMUNIDADES
+───────────
+• Laravel.io: https://laravel.io
+• Stack Overflow: Tag [laravel] y [vue.js]
+• Reddit: r/laravel, r/vuejs
+
+LIBROS
+──────
+• "Laravel: Up & Running" de Matt Stauffer
+• "Vue.js: Up and Running" de Callum Macrae
+
+═══════════════════════════════════════════════════════════════════════════
+
+🎬 DEMOSTRACIÓN EN VIVO - GUION
+═══════════════════════════════════════════════════════════════════════════
+
+1. MOSTRAR LA APLICACIÓN FUNCIONANDO
+   ☐ Navegar por /produktuak
+   ☐ Crear un producto
+   ☐ Mostrar validación (error al no llenar campos)
+   ☐ Editar producto
+   ☐ Ver detalles
+   ☐ Eliminar con confirmación
+
+2. MOSTRAR CÓDIGO BLADE
+   ☐ Abrir index.blade.php
+   ☐ Explicar directivas @foreach, @if
+   ☐ Mostrar cómo se pasan datos del controlador
+   ☐ Abrir ProduktuController@index
+
+3. MOSTRAR BASE DE DATOS
+   ☐ mysql -u root -p
+   ☐ USE produktuak;
+   ☐ SELECT * FROM produktuak;
+   ☐ Mostrar cómo Laravel mapea esto a objetos
+
+4. MOSTRAR API
+   ☐ Usar Postman o curl
+   ☐ GET /api/produktuak → mostrar JSON
+   ☐ POST crear producto → mostrar respuesta
+   ☐ Abrir ProduktuApiController
+
+5. MOSTRAR VUE.JS
+   ☐ Navegar a /produktuak-vue
+   ☐ Crear producto sin recarga
+   ☐ Abrir DevTools → Network tab
+   ☐ Mostrar peticiones AJAX
+   ☐ Abrir vue.blade.php → explicar código Vue
+
+6. COMPARAR ENFOQUES
+   ☐ Lado a lado: Blade vs Vue
+   ☐ Recargar página vs sin recarga
+   ☐ HTML completo vs JSON
+   ☐ Discutir ventajas/desventajas
+
+═══════════════════════════════════════════════════════════════════════════
+
+✅ VERIFICACIÓN FINAL ANTES DE LA CLASE
+═══════════════════════════════════════════════════════════════════════════
+
+☐ Proyecto funcionando en tu máquina
+☐ Documentación revisada
+☐ Ejemplos preparados
+☐ Ejercicios seleccionados según nivel del grupo
+☐ Postman/curl configurado para demos
+☐ Proyector/pantalla compartida funcionando
+☐ Backup del proyecto por si algo falla
+
+═══════════════════════════════════════════════════════════════════════════
+
+💭 PREGUNTAS PARA GENERAR DISCUSIÓN
+═══════════════════════════════════════════════════════════════════════════
+
+1. ¿Cuándo usarías Blade y cuándo Vue.js?
+2. ¿Qué ventajas tiene usar un ORM como Eloquent?
+3. ¿Por qué es importante validar en el servidor?
+4. ¿Cómo escalarías esta aplicación para millones de usuarios?
+5. ¿Qué mejoras de seguridad añadirías?
+6. ¿Cómo implementarías autenticación?
+7. ¿Qué otras entidades añadirías al modelo de datos?
+
+═══════════════════════════════════════════════════════════════════════════
+
+📝 NOTAS ADICIONALES
+═══════════════════════════════════════════════════════════════════════════
+
+• Adapta el contenido según el nivel de tu grupo
+• No intentes cubrir todo en una sesión
+• Fomenta la experimentación y los errores (son oportunidades de aprendizaje)
+• Usa ARQUITECTURA.md para explicar visualmente
+• Usa COMPARATIVA_CRUD.md para discusiones técnicas
+• Anima a los estudiantes a leer la documentación incluida
+• Comparte el repositorio completo con ellos
+
+═══════════════════════════════════════════════════════════════════════════
+
+¡ÉXITO EN TU CLASE! 🎓
+
+Si tienes sugerencias para mejorar este material educativo,
+no dudes en adaptarlo a las necesidades de tu alumnado.
+
+═══════════════════════════════════════════════════════════════════════════
+
+Proyecto Produktuak - Material Educativo
+Versión 1.0 - 16 de noviembre de 2025

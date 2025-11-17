@@ -1,0 +1,316 @@
+═══════════════════════════════════════════════════════════════════════════
+                    INSTRUCCIONES DE INSTALACIÓN RÁPIDA
+                              PROYECTO PRODUKTUAK
+═══════════════════════════════════════════════════════════════════════════
+
+⚠️  IMPORTANTE: Lee completamente antes de empezar
+
+═══════════════════════════════════════════════════════════════════════════
+
+OPCIÓN 1: SI YA TIENES UN PROYECTO LARAVEL CREADO (Recomendado)
+═══════════════════════════════════════════════════════════════════════════
+
+Todos los archivos ya están en la carpeta /Users/laura/Desktop/laravel-vue
+
+1. CONFIGURAR BASE DE DATOS
+   ──────────────────────────
+   
+   Opción A - Importar SQL completo:
+   $ mysql -u root -p < database_completo.sql
+   
+   Opción B - Crear manualmente:
+   $ mysql -u root -p
+   mysql> CREATE DATABASE produktuak CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+   mysql> EXIT;
+
+2. CONFIGURAR .ENV
+   ───────────────
+   
+   $ cd /Users/laura/Desktop/laravel-vue
+   $ cp .env.example .env
+   
+   Edita el archivo .env y configura:
+   
+   DB_DATABASE=produktuak
+   DB_USERNAME=root
+   DB_PASSWORD=tu_contraseña_mysql
+
+3. GENERAR CLAVE DE APLICACIÓN
+   ────────────────────────────
+   
+   $ php artisan key:generate
+
+4. EJECUTAR MIGRACIONES
+   ─────────────────────
+   
+   $ php artisan migrate
+   
+   Deberías ver:
+   ✓ Migration table created successfully.
+   ✓ Migrating: 2025_11_16_000001_create_produktuak_table
+   ✓ Migrated: 2025_11_16_000001_create_produktuak_table
+
+5. INSERTAR DATOS DE EJEMPLO (OPCIONAL)
+   ─────────────────────────────────────
+   
+   $ mysql -u root -p produktuak < database.sql
+
+6. DAR PERMISOS A CARPETAS
+   ────────────────────────
+   
+   $ chmod -R 775 storage bootstrap/cache
+
+7. INICIAR SERVIDOR
+   ─────────────────
+   
+   $ php artisan serve
+   
+   ✅ Abre en tu navegador: http://localhost:8000
+
+═══════════════════════════════════════════════════════════════════════════
+
+OPCIÓN 2: CREAR PROYECTO LARAVEL DESDE CERO
+═══════════════════════════════════════════════════════════════════════════
+
+Si prefieres empezar completamente desde cero:
+
+1. CREAR PROYECTO LARAVEL
+   ───────────────────────
+   
+   $ composer create-project laravel/laravel produktuak
+   $ cd produktuak
+
+2. COPIAR ARCHIVOS DEL PROYECTO
+   ─────────────────────────────
+   
+   Copia todos los archivos de /Users/laura/Desktop/laravel-vue al nuevo proyecto
+   
+   Archivos importantes a copiar:
+   • app/Models/Produktu.php
+   • app/Http/Controllers/ProduktuController.php
+   • app/Http/Controllers/Api/ProduktuApiController.php
+   • database/migrations/*_create_produktuak_table.php
+   • resources/views/layouts/*
+   • resources/views/produktuak/*
+   • routes/web.php
+   • routes/api.php
+   • .env.example (actualizar)
+   • database.sql
+   • database_completo.sql
+
+3. CONTINUAR CON PASOS 1-7 DE LA OPCIÓN 1
+
+═══════════════════════════════════════════════════════════════════════════
+
+VERIFICACIÓN DE INSTALACIÓN
+═══════════════════════════════════════════════════════════════════════════
+
+Después de completar la instalación, verifica que todo funcione:
+
+✓ PASO 1: Verificar base de datos
+  $ mysql -u root -p
+  mysql> USE produktuak;
+  mysql> SHOW TABLES;
+  mysql> SELECT COUNT(*) FROM produktuak;
+  mysql> EXIT;
+  
+  Deberías ver la tabla "produktuak" y algunos registros si insertaste datos.
+
+✓ PASO 2: Verificar rutas web
+  Visita: http://localhost:8000
+  
+  Deberías ser redirigido a: http://localhost:8000/produktuak
+  Verás la lista de productos
+
+✓ PASO 3: Probar CRUD tradicional
+  • Clic en "Produktu Berria" → Crear un producto
+  • Clic en "Editatu" → Modificar un producto
+  • Clic en "Ikusi" → Ver detalles
+  • Clic en "Ezabatu" → Eliminar (con confirmación)
+
+✓ PASO 4: Probar CRUD con Vue.js
+  Visita: http://localhost:8000/produktuak-vue
+  
+  Deberías ver un formulario y una tabla.
+  Todas las operaciones funcionan sin recargar la página.
+
+✓ PASO 5: Probar API REST
+  $ curl http://localhost:8000/api/produktuak
+  
+  Deberías recibir una respuesta JSON con productos.
+
+═══════════════════════════════════════════════════════════════════════════
+
+SOLUCIÓN DE PROBLEMAS COMUNES
+═══════════════════════════════════════════════════════════════════════════
+
+❌ ERROR: "No application encryption key has been specified"
+   SOLUCIÓN:
+   $ php artisan key:generate
+
+❌ ERROR: "SQLSTATE[HY000] [1049] Unknown database 'produktuak'"
+   SOLUCIÓN:
+   $ mysql -u root -p
+   mysql> CREATE DATABASE produktuak;
+   mysql> EXIT;
+
+❌ ERROR: "SQLSTATE[HY000] [1045] Access denied for user"
+   SOLUCIÓN:
+   Verifica usuario y contraseña en .env
+
+❌ ERROR: "Class 'Produktu' not found"
+   SOLUCIÓN:
+   $ composer dump-autoload
+
+❌ ERROR: Permisos en storage/
+   SOLUCIÓN:
+   $ chmod -R 775 storage bootstrap/cache
+
+❌ ERROR: "Route [produktuak.index] not defined"
+   SOLUCIÓN:
+   $ php artisan route:clear
+   $ php artisan cache:clear
+   Verifica que routes/web.php tenga las rutas correctas
+
+❌ ERROR: 404 al visitar /produktuak-vue
+   SOLUCIÓN:
+   Verifica que existe resources/views/produktuak/vue.blade.php
+   y que routes/web.php tiene la ruta 'produktuak.vue'
+
+❌ ERROR: La API devuelve 404
+   SOLUCIÓN:
+   Verifica que routes/api.php tiene las rutas de API
+   La URL debe ser: http://localhost:8000/api/produktuak
+
+❌ ERROR: Vue.js no carga (botones no funcionan)
+   SOLUCIÓN:
+   Abre la consola del navegador (F12) y verifica que:
+   • Vue.js se carga desde CDN
+   • Axios se carga desde CDN
+   • No hay errores de JavaScript
+
+═══════════════════════════════════════════════════════════════════════════
+
+COMANDOS ÚTILES PARA EL DÍA A DÍA
+═══════════════════════════════════════════════════════════════════════════
+
+Iniciar servidor:
+  $ php artisan serve
+
+Ver todas las rutas:
+  $ php artisan route:list
+
+Ver rutas específicas de produktuak:
+  $ php artisan route:list --name=produktuak
+
+Limpiar todo el caché:
+  $ php artisan optimize:clear
+
+Consola interactiva (Tinker):
+  $ php artisan tinker
+  
+  Dentro de Tinker:
+  > App\Models\Produktu::all();
+  > App\Models\Produktu::count();
+  > App\Models\Produktu::create(['izena' => 'Test', 'prezioa' => 9.99]);
+  > exit
+
+Ver logs en tiempo real:
+  $ tail -f storage/logs/laravel.log
+
+Resetear base de datos (¡cuidado, borra todo!):
+  $ php artisan migrate:fresh
+
+Ver estado de migraciones:
+  $ php artisan migrate:status
+
+═══════════════════════════════════════════════════════════════════════════
+
+PRÓXIMOS PASOS Y EJERCICIOS SUGERIDOS
+═══════════════════════════════════════════════════════════════════════════
+
+Una vez que todo funcione, puedes practicar con estos ejercicios:
+
+NIVEL 1 - BÁSICO:
+  1. Añadir un producto nuevo desde la interfaz
+  2. Modificar el precio de un producto existente
+  3. Cambiar el número de productos por página (en ProduktuController)
+  4. Personalizar los mensajes de éxito
+
+NIVEL 2 - INTERMEDIO:
+  5. Añadir un campo "stock" (cantidad) a la tabla y formularios
+  6. Implementar búsqueda de productos por nombre
+  7. Añadir validación: precio máximo de 10000€
+  8. Crear una vista de "Productos destacados" (prezioa > 500)
+
+NIVEL 3 - AVANZADO:
+  9. Implementar un sistema de categorías
+  10. Añadir subida de imágenes para productos
+  11. Crear un carrito de compra
+  12. Implementar autenticación de usuarios
+  13. Añadir exportación a PDF/Excel
+
+═══════════════════════════════════════════════════════════════════════════
+
+RECURSOS ADICIONALES
+═══════════════════════════════════════════════════════════════════════════
+
+📖 Documentación incluida en el proyecto:
+  • README.md - Documentación completa
+  • GUIA_PASO_A_PASO.md - Tutorial detallado
+  • COMPARATIVA_CRUD.md - Blade vs Vue.js
+  • COMANDOS.sh - Referencia de comandos
+  • RESUMEN_PROYECTO.txt - Resumen general
+
+🌐 Documentación online:
+  • Laravel: https://laravel.com/docs
+  • Vue.js: https://vuejs.org/guide/
+  • Bootstrap: https://getbootstrap.com/docs
+  • MySQL: https://dev.mysql.com/doc/
+
+🎥 Video tutoriales recomendados:
+  • Laracasts: https://laracasts.com
+  • Vue Mastery: https://www.vuemastery.com
+
+═══════════════════════════════════════════════════════════════════════════
+
+¿TODO LISTO? VERIFICA ESTO:
+═══════════════════════════════════════════════════════════════════════════
+
+☐ MySQL instalado y funcionando
+☐ Base de datos "produktuak" creada
+☐ Archivo .env configurado correctamente
+☐ Migraciones ejecutadas (php artisan migrate)
+☐ Servidor Laravel iniciado (php artisan serve)
+☐ http://localhost:8000 muestra la lista de productos
+☐ http://localhost:8000/produktuak-vue funciona
+☐ API responde en http://localhost:8000/api/produktuak
+
+Si todo está ✓, ¡ESTÁS LISTO PARA COMENZAR! 🚀
+
+═══════════════════════════════════════════════════════════════════════════
+
+¿Dudas? Revisa:
+  1. Los logs: storage/logs/laravel.log
+  2. La consola del navegador (F12)
+  3. El apartado "Solución de problemas" arriba
+  4. La documentación en los archivos .md
+
+═══════════════════════════════════════════════════════════════════════════
+
+CONTACTO Y SOPORTE
+═══════════════════════════════════════════════════════════════════════════
+
+Este proyecto es material educativo de código abierto.
+
+Para dudas académicas, consulta con tu profesor/a.
+
+═══════════════════════════════════════════════════════════════════════════
+
+                          ¡BUENA SUERTE! 🎓
+
+═══════════════════════════════════════════════════════════════════════════
+
+Fecha: 16 de noviembre de 2025
+Versión: 1.0
+Estado: ✅ PROYECTO COMPLETO Y FUNCIONAL
